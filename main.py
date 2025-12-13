@@ -1,4 +1,5 @@
 import os
+from stats import count_words
 
 def get_book_text(bookLoc):
   with open(bookLoc) as b:
@@ -6,9 +7,10 @@ def get_book_text(bookLoc):
   return book_contents
 
 def main():
-  frank = os.path.expanduser('~/bookbot/bookbot/books/frankenstein.txt')  
+  frank = os.path.expanduser('~/bookbot/books/frankenstein.txt')  
   text = get_book_text(frank)
-  print(text)
+  numWords = count_words(text)
+  print(f"Found {numWords} total words")
 
 main()  
 
