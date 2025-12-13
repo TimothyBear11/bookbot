@@ -1,5 +1,5 @@
 import os
-from stats import count_words
+from stats import count_words, count_chars
 
 def get_book_text(bookLoc):
   with open(bookLoc) as b:
@@ -11,6 +11,9 @@ def main():
   text = get_book_text(frank)
   numWords = count_words(text)
   print(f"Found {numWords} total words")
+  charCount = count_chars(text)
+  print(charCount)
+
 
 main()  
 
