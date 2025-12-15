@@ -5,7 +5,12 @@ def count_words(bookString):
   numWords = 0
   for word in words:
     numWords += 1
-  return numWords  
+  return numWords
 
 def count_chars(bookString):
     return Counter(bookString.lower())
+
+def sort_counts(charCount):
+    sorted = charCount.sort(revers=True,)
+    def sort_counts(charCount):
+        sorted = charCount.sort(revers=True,)

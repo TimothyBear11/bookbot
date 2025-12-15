@@ -1,5 +1,5 @@
 import os
-from stats import count_words, count_chars
+from stats import count_words, count_chars, sort_counts
 
 def get_book_text(bookLoc):
   with open(bookLoc) as b:
@@ -7,13 +7,15 @@ def get_book_text(bookLoc):
   return book_contents
 
 def main():
-  frank = os.path.expanduser('~/bookbot/books/frankenstein.txt')  
+  frank = os.path.expanduser('~/bookbot/books/frankenstein.txt')
   text = get_book_text(frank)
   numWords = count_words(text)
   print(f"Found {numWords} total words")
   charCount = count_chars(text)
-  print(charCount)
+  sortedCounts = sort_counts(charCount)
+  for char, count in sortedCounts:
+      if char.isalpha():
+          print(f"{char}: {count}")
 
 
-main()  
-
+main()
