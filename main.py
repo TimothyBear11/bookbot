@@ -1,21 +1,29 @@
-import os
+# main.py
+import sys
 from stats import count_words, count_chars, sort_counts
 
-def get_book_text(bookLoc):
-  with open(bookLoc) as b:
-    book_contents = b.read()
-  return book_contents
+def get_book_text(path: str) -> str:
+    """Return the entire contents of *path* as a single string."""
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()
 
 def main():
-  frank = os.path.expanduser('~/bookbot/books/frankenstein.txt')
-  text = get_book_text(frank)
-  numWords = count_words(text)
-  print(f"Found {numWords} total words")
-  charCount = count_chars(text)
-  sortedCounts = sort_counts(charCount)
-  for char, count in sortedCounts:
-      if char.isalpha():
-          print(f"{char}: {count}")
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
 
+    book_path = sys.argv[1]
+    book_text = get_book_text(book_path)
 
-main()
+    num_words = count_words(book_text)
+    print(f"Found {num_words} total words")
+
+    char_counter = count_chars(book_text)
+    sorted_counts = sort_counts(char_counter)
+
+    # Print top 10 most common letters
+    for char, cnt in sorted_counts[:10]:
+        print(f"{char}: {cnt}")
+
+if __name__ == "__main__":
+    main()
